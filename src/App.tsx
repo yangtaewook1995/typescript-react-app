@@ -1,14 +1,17 @@
 import { count } from "console";
 import React, { Component } from "react";
 import Number from "./Number";
+import { Form, Input } from "./Input";
 
 interface IState {
   counter: number;
+  name: string;
 }
 
 class App extends Component<{}, IState> {
   state = {
     counter: 0,
+    name: "",
   };
 
   add = () => {
@@ -17,10 +20,17 @@ class App extends Component<{}, IState> {
     });
   };
 
+  onChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    console.log(event.target);
+  };
+
   render() {
-    const { counter } = this.state;
+    const { counter, name } = this.state;
     return (
       <div>
+        <Form>
+          <Input value={name} onChange={this.onChange}></Input>
+        </Form>
         <Number count={counter}></Number>
         <button onClick={this.add}>Add</button>
       </div>
