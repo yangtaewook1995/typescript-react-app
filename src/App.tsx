@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { Component } from "react";
 
+interface IState {
+  counter: number;
+}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component<{}, IState> {
+  state = {
+    counter: 0,
+  };
+
+  add = () => {
+    this.setState((prev) => {
+      return { counter: prev.counter + 1 };
+    });
+  };
+
+  render() {
+    const { counter } = this.state;
+    return (
+      <div>
+        {counter} <button onClick={this.add}>Add</button>
+      </div>
+    );
+  }
 }
 
 export default App;
